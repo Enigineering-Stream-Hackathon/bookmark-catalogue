@@ -1,0 +1,61 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "02-create-card-table",
+        "author": "thor",
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "T_CARD",
+              "columns": [
+                {
+                  "column": {
+                    "name": "ID",
+                    "type": "varchar(100)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "TITLE",
+                    "type": "varchar(50)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "DESCRIPTION",
+                    "type": "varchar(50)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "LONG_URL",
+                    "type": "clob"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "SHORT_URL",
+                    "type": "varchar(100)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "CREATOR",
+                    "type": "varchar(25)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "CREATED_ON",
+                    "type": "date"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

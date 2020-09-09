@@ -15,8 +15,8 @@ import org.bookmark.domain.features.stubs.TestContext;
 
 public class CreateShortUrlStepDef {
 
-  private TestContext testContext;
-  private UrlService service;
+  private final TestContext testContext;
+  private final UrlService service;
 
   public CreateShortUrlStepDef(TestContext testContext, UrlService service) {
     this.testContext = testContext;
