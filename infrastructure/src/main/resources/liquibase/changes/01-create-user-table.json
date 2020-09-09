@@ -1,0 +1,43 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "01-create-url-table",
+        "author": "thor",
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "T_URL",
+              "columns": [
+                {
+                  "column": {
+                    "name": "ID",
+                    "type": "varchar(255)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "LONG_URL",
+                    "type": "clob"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EXPIRY_DATE",
+                    "type": "date"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "CREATION_DATE",
+                    "type": "date"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

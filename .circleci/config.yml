@@ -1,0 +1,51 @@
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@1.1.1
+
+jobs:
+  build:
+    working_directory: ~/bookmark-catalogue
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
+    steps:
+      - checkout
+      - run:
+          name: Generate cumulative pom.xml checksum
+          command: |
+            find . -type f -name "pom.xml" -exec sh -c "sha256sum {} >> ~/pom-checksum.tmp" \;
+            sort -o ~/pom-checksum ~/pom-checksum.tmp
+          when: always
+      - restore_cache:
+          key: bookmark-catalogue-{{ checksum "~/pom-checksum" }}
+      - run:
+          name: Install Dependencies
+          command: mvn -DskipTests clean install dependency:resolve-plugins dependency:go-offline
+      - run:
+          name: Run Tests
+          command: mvn package
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: bookmark-catalogue-{{ checksum  "~/pom-checksum" }}
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
+      - run:
+          name: Generate Coverage Report
+          command: mvn verify
+      - codecov/upload:
+          token: e5f1c7d1-57f8-4500-927e-544af0ce14da
+          file: report/target/site/jacoco-aggregate/jacoco.xml
+      - store_test_results:
+          path: ~/test-results
+      - store_artifacts:
+          path: bootstrap/target/bootstrap-1.0-SNAPSHOT.jar
+
+workflows:
+  build_workflow:
+    jobs:
+      - build # checkout, build, test, and upload test result
