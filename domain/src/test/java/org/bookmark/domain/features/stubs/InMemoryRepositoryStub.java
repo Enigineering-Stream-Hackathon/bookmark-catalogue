@@ -7,7 +7,7 @@ import org.bookmark.domain.enitites.UrlEntity;
 @AllArgsConstructor
 public class InMemoryRepositoryStub implements UrlRepository {
 
-  private TestContext testContext;
+  private final TestContext testContext;
 
   @Override
   public void save(UrlEntity entity) {
@@ -16,7 +16,8 @@ public class InMemoryRepositoryStub implements UrlRepository {
 
   @Override
   public UrlEntity get(String shortUrl) {
-    return testContext.getUrlEntities().stream().filter(it -> it.getId().equals(shortUrl))
+    return testContext.getUrlEntities().stream()
+        .filter(it -> it.getId().equals(shortUrl))
         .findFirst().get();
   }
 }

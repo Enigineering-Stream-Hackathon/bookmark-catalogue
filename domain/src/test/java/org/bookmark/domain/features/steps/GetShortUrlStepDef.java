@@ -10,7 +10,6 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import java.time.LocalDate;
-import lombok.SneakyThrows;
 import org.bookmark.domain.UrlService;
 import org.bookmark.domain.enitites.UrlEntity;
 import org.bookmark.domain.exception.UrlExpiredException;
@@ -18,8 +17,8 @@ import org.bookmark.domain.features.stubs.TestContext;
 
 public class GetShortUrlStepDef {
 
-  private TestContext testContext;
-  private UrlService service;
+  private final TestContext testContext;
+  private final UrlService service;
 
   public GetShortUrlStepDef(TestContext testContext, UrlService service) {
     this.testContext = testContext;
