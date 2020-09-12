@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import lombok.val;
-import org.bookmark.domain.repository.FluentJdbcRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +18,6 @@ public class CardControllerIntegrationTest {
   @Autowired
   private MockMvc mockMvc;
 
-  @Autowired
-  private FluentJdbcRepository repository;
-
   @Test
   public void should_create_a_new_card_when_requested() throws Exception {
 
@@ -33,7 +29,6 @@ public class CardControllerIntegrationTest {
             + "  \"longUrl\": \"http://longUrl\",\n"
             + "  \"creator\": \"iron.man\"\n"
             + "}");
-
 
     mockMvc.perform(request)
         .andExpect(status().isCreated());
