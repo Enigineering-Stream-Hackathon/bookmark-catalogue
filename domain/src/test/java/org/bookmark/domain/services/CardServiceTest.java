@@ -29,7 +29,8 @@ public class CardServiceTest {
   @Test
   public void should_call_repository_to_save_entity() {
     val argumentCaptor = ArgumentCaptor.forClass(Card.class);
-    val command = new CardCommand("test_title","test_des",LONG_URL, "admin");
+    val command = new CardCommand("test_title", "test_des", LONG_URL, "admin", "chris", "FT1",
+        "Tribe1", "PlatForm1");
 
     service.create(command);
 
@@ -41,6 +42,7 @@ public class CardServiceTest {
     assertThat(entity.getCreator()).isEqualTo("admin");
     assertThat(entity.getCreatedOn()).isEqualTo(LocalDate.now());
     assertThat(entity.getShortUrl()).isNotNull();
+    assertThat(entity.getContext()).isEqualTo("chris");
 
   }
 

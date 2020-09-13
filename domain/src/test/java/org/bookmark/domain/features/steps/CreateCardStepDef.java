@@ -26,9 +26,9 @@ public class CreateCardStepDef {
     testContext.init();
   }
 
-  @Given("([^\"]*) wants to create a card with title ([^\"]*) description ([^\"]*) for long url ([^\"]*)")
-  public void given(String userName, String title, String description, String longUrl) {
-    command = new CardCommand(title, description, longUrl, userName);
+  @Given("([^\"]*) wants to create a card with title ([^\"]*) description ([^\"]*) for long url ([^\"]*)  with context ([^\"]*)")
+  public void given(String userName, String title, String description, String longUrl, String context) {
+    command = new CardCommand(title, description, longUrl, userName, context, "FT1", "Tribe1" , "PlatForm1");
   }
 
   @When("Sabu clicks on create card")

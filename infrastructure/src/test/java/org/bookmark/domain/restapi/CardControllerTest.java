@@ -26,12 +26,14 @@ public class CardControllerTest {
   @Test
   public void should_call_service_to_create_short_url() {
     val argumentCaptor = ArgumentCaptor.forClass(CardCommand.class);
-    val request = new CreateCardRequest("TITLE", "DESC", "http://longurl", "ironman");
+    val request = new CreateCardRequest("TITLE", "DESC", "http://longurl", "ironman", "chris",
+        "FT1", "Tribe1", "PlatForm1");
     controller.create(request);
 
     verify(service).create(argumentCaptor.capture());
     assertThat(argumentCaptor.getValue()).isEqualToComparingFieldByField(
-        new CardCommand("TITLE", "DESC", "http://longurl", "ironman"));
+        new CardCommand("TITLE", "DESC", "http://longurl", "ironman",
+            "chris", "FT1", "Tribe1", "PlatForm1"));
 
   }
 }

@@ -1,0 +1,37 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "04-add-context-column-in-card",
+        "author": "thor",
+        "changes": [
+          {
+            "addColumn": {
+              "tableName": "T_CARD",
+              "columns": [
+                {
+                  "column": {
+                    "name": "FEATURE_TEAM",
+                    "type": "varchar(30)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "TRIBE",
+                    "type": "varchar(30)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "PLATFORM",
+                    "type": "varchar(30)"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
