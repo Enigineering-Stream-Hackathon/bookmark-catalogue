@@ -9,6 +9,7 @@ import lombok.val;
 import org.bookmark.domain.UrlService;
 import org.bookmark.domain.restapi.requests.UrlShorterRequest;
 import org.bookmark.domain.restapi.responses.ShortUrlResponse;
+import org.bookmark.domain.services.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,16 +26,21 @@ public class UrlShorterController {
   @Autowired
   private UrlService service;
 
+  @Autowired
+  private CardService cardService;
+
   @PostMapping(value = "/short-url", consumes = "application/json")
   public ResponseEntity<ShortUrlResponse> create(@RequestBody UrlShorterRequest request) {
-    val shortUrl = "http://localhost:8080/".concat(service.createShortUrl(request.toCommand()));
+    val shortUrl = "http://localhost:8080/tiny/quicky/"
+        .concat(service.createShortUrl(request.toCommand()));
     return status(CREATED).body(new ShortUrlResponse(shortUrl));
   }
 
-  @GetMapping(value = "{url}")
-  public ResponseEntity getAndRedirect(@PathVariable String url) {
-    log.info("Request received to redirect for url {}", url);
-    val longUrl = service.getLongUrl(url);
+  @GetMapping(value = "/tiny/{context}/{url}")
+  public ResponseEntity getAndRedirect(@PathVariable String context, @PathVariable String url) {
+    log.info("Request received to redirect for url {} and context {}", url, context);
+    val longUrl = "quicky".equals(context) ? service.getLongUrl(url)
+        : cardService.getCardLongUrl(context, url);
     return ResponseEntity.status(HttpStatus.FOUND)
         .location(URI.create(longUrl))
         .build();

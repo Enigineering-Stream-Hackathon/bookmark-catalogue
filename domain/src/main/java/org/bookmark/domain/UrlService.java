@@ -1,5 +1,7 @@
 package org.bookmark.domain;
 
+import static java.util.Objects.nonNull;
+
 import com.google.common.hash.Hashing;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
@@ -28,7 +30,7 @@ public class UrlService {
 
   public String getLongUrl(String shortUrl) {
     val entity =  repository.get(shortUrl);
-    if(entity.getExpiryDate().isAfter(LocalDate.now())) {
+    if(nonNull(entity) && entity.getExpiryDate().isAfter(LocalDate.now())) {
       return entity.getLongUrl();
     }
     throw new UrlExpiredException();

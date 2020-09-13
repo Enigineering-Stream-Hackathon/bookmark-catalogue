@@ -50,7 +50,7 @@ public class UrlShorterControllerIntegrationTest {
         .getContentAsString();
 
     // Then
-    assertThat(response).isEqualTo("{\"shortUrl\":\"http://localhost:8080/e2dac7cff26fbec68f68b84adfc55ce949402ce1dd194a1c6b162d6d35502db9\"}");
+    assertThat(response).isEqualTo("{\"shortUrl\":\"http://localhost:8080/tiny/quicky/e2dac7cff26fbec68f68b84adfc55ce949402ce1dd194a1c6b162d6d35502db9\"}");
 
   }
 
@@ -59,7 +59,7 @@ public class UrlShorterControllerIntegrationTest {
 
     repository.save(new UrlEntity("75bd8d128757f634f1b55ac9c201ccfe736c0dec51c95ab87b8fecfa6ce255b4", LONG_URL, LocalDate.MAX, LocalDate.now()));
 
-    val request = get("/75bd8d128757f634f1b55ac9c201ccfe736c0dec51c95ab87b8fecfa6ce255b4");
+    val request = get("/tiny/quicky/75bd8d128757f634f1b55ac9c201ccfe736c0dec51c95ab87b8fecfa6ce255b4");
     // When
     val response = mockMvc.perform(request)
         .andExpect(status().isFound());

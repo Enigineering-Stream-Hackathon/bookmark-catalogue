@@ -1,0 +1,25 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "03-add-context-column-in-card",
+        "author": "thor",
+        "changes": [
+          {
+            "addColumn": {
+              "tableName": "T_CARD",
+              "columns": [
+                {
+                  "column": {
+                    "name": "CONTEXT",
+                    "type": "varchar(30)"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

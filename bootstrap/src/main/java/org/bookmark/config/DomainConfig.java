@@ -17,6 +17,7 @@ public class DomainConfig {
 
   private final CardFJRepository cardRepository;
 
+
   @Bean
   public UrlService urlService() {
     return new UrlService(repository);
