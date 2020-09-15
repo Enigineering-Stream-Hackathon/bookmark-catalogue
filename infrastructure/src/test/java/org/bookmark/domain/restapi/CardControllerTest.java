@@ -36,4 +36,11 @@ public class CardControllerTest {
             "chris", "FT1", "Tribe1", "PlatForm1"));
 
   }
+
+  @Test
+  public void should_invoke_service_with_the_context_to_get_the_cards() {
+    controller.findByContext("user.name");
+
+    verify(service).getCardsByContext("user.name");
+  }
 }

@@ -1,6 +1,9 @@
 package org.bookmark.domain.repository;
 
+import java.sql.ResultSet;
 import java.util.List;
+import lombok.SneakyThrows;
+import org.bookmark.domain.commands.Category;
 import org.bookmark.domain.enitites.Card;
 import org.bookmark.domain.repositories.CardRepository;
 import org.codejargon.fluentjdbc.api.FluentJdbc;
@@ -35,17 +38,36 @@ public class CardFJRepository implements CardRepository {
   public List<Card> getByContext(String context) {
     return fluentJdbc.query().select("select * from T_CARD where CONTEXT = ?")
         .params(context)
-        .listResult(it -> new Card(it.getString("ID"),
-            it.getString("TITLE"),
-            it.getString("DESCRIPTION"),
-            it.getString("LONG_URL"),
-            it.getString("SHORT_URL"),
-            it.getString("CREATOR"),
-            it.getDate("CREATED_ON").toLocalDate(),
-            it.getString("CONTEXT"),
-            it.getString("FEATURE_TEAM"),
-            it.getString("TRIBE"),
-            it.getString("PLATFORM")));
+        .listResult(this::buildCard);
 
+  }
+
+  @Override
+  public List<Card> findByCategoryAndSubCategory(Category category, String subCategory) {
+    return fluentJdbc.query().select("select * from T_CARD where " + category.name() + " = ?")
+        .params(subCategory)
+        .listResult(this::buildCard);
+  }
+
+  @SneakyThrows
+  private Card buildCard(ResultSet it) {
+    return new Card(it.getString("ID"),
+        it.getString("TITLE"),
+        it.getString("DESCRIPTION"),
+        it.getString("LONG_URL"),
+        it.getString("SHORT_URL"),
+        it.getString("CREATOR"),
+        it.getDate("CREATED_ON").toLocalDate(),
+        it.getString("CONTEXT"),
+        it.getString("FEATURE_TEAM"),
+        it.getString("TRIBE"),
+        it.getString("PLATFORM"));
+  }
+
+  @Override
+  public Card findById(String cardId) {
+    return fluentJdbc.query().select("select * from T_CARD where ID = ?")
+        .params(cardId)
+        .firstResult(this::buildCard).orElse(null);
   }
 }

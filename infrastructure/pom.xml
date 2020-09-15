@@ -27,6 +27,10 @@
       <artifactId>spring-context</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.codejargon</groupId>
       <artifactId>fluentjdbc</artifactId>
       <version>${fluent-jdbc.version}</version>
