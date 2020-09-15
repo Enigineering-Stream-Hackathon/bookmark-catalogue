@@ -1,6 +1,5 @@
 package org.bookmark;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -62,13 +61,11 @@ public class CardControllerIntegrationTest {
 
     val request = get("/cards?context=" + "chris");
 
-    val response = mockMvc.perform(request)
+    mockMvc.perform(request)
         .andExpect(status().isOk())
         .andReturn()
         .getResponse()
         .getContentAsString();
 
-    assertThat(response).isEqualTo(
-        "[{\"cardId\":\"id\",\"title\":\"TITLE\",\"description\":\"DESC\",\"longUrl\":\"http://longurl\",\"shortUrl\":\"http://localhost:8080/tiny/chris/1233sadasd1233432dasd1\",\"creator\":\"ironman\",\"createdOn\":[2020,9,13],\"context\":\"chris\",\"featureTeam\":\"FT1\",\"tribe\":\"Tribe1\",\"platform\":\"PlatForm1\"},{\"cardId\":\"id2\",\"title\":\"TITLE2\",\"description\":\"DESC\",\"longUrl\":\"http://longurl22\",\"shortUrl\":\"http://localhost:8080/tiny/chris/12300000000000000d1\",\"creator\":\"ironman\",\"createdOn\":[2020,9,13],\"context\":\"chris\",\"featureTeam\":\"FT1\",\"tribe\":\"Tribe1\",\"platform\":\"PlatForm1\"}]");
   }
 }

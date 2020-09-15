@@ -1,0 +1,55 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "05-create-catalogue-table",
+        "author": "thor",
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "T_CATALOGUE",
+              "columns": [
+                {
+                  "column": {
+                    "name": "ID",
+                    "type": "varchar(100)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "TITLE",
+                    "type": "varchar(255)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "CARDS",
+                    "type": "clob"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "LONG_URL",
+                    "type": "clob"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "SHORT_URL",
+                    "type": "varchar(255)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "CREATOR",
+                    "type": "varchar(50)"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
