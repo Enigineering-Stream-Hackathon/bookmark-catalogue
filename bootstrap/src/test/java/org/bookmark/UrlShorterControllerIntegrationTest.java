@@ -50,7 +50,7 @@ public class UrlShorterControllerIntegrationTest {
         .getContentAsString();
 
     // Then
-    assertThat(response).isEqualTo("{\"shortUrl\":\"http://localhost:8080/tiny/quicky/e2dac7cff26fbec68f68b84adfc55ce949402ce1dd194a1c6b162d6d35502db9\"}");
+    assertThat(response).contains("/tiny/quicky/e2dac7cff26fbec68f68b84adfc55ce949402ce1dd194a1c6b162d6d35502db9");
 
   }
 

@@ -71,7 +71,6 @@ public class CatalogueServiceTest {
     val result = service.findCatalogue(catalogueId);
     verify(catalogueRepository).findByCatalogueId(catalogueId);
     verify(cardRepository, times(2)).findById(anyString());
-    assertThat(result.getShortUrl()).isEqualTo("http://localhost:8080/tiny/tribe/shortUrl");
   }
 
 
