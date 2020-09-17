@@ -99,7 +99,7 @@
         <configuration>
           <requiresUnpack>
             <dependency>
-              <groupId>org.user</groupId>
+              <groupId>org.bookmark</groupId>
               <artifactId>infrastructure</artifactId>
             </dependency>
           </requiresUnpack>

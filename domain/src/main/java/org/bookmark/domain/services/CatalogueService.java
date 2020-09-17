@@ -45,7 +45,7 @@ public class CatalogueService {
 
   public List<Catalogue> findAllCatalogues() {
     val catalogs =  catalogueRepository.findAll();
-    catalogs.forEach(it -> it.setShortUrl("http://localhost:8080/tiny/".concat(it.getShortUrl())));
+    catalogs.forEach(it -> it.setShortUrl("https://bookmark-catalogue.herokuapp.com/tiny/".concat(it.getShortUrl())));
     return catalogs;
   }
 
@@ -55,7 +55,7 @@ public class CatalogueService {
         .map(cardRepository::findById)
         .collect(toList());
     return new CatalogueQuery(catalogue.getCatalogueId(), catalogue.getTitle(), cards,
-        catalogue.getLongUrl(), "http://localhost:8080/tiny/".concat(catalogue.getShortUrl()), catalogue.getCreator());
+        catalogue.getLongUrl(), "https://bookmark-catalogue.herokuapp.com/tiny/".concat(catalogue.getShortUrl()), catalogue.getCreator());
   }
 
   public String getCatalogueLongUrl(String context, String url) {

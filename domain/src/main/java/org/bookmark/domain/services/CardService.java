@@ -33,7 +33,7 @@ public class CardService {
 
   public List<Card> getCardsByContext(String context) {
     val cards = repository.getByContext(context);
-    cards.forEach(it -> it.setShortUrl("http://localhost:8080/tiny/".concat(it.getShortUrl())));
+    cards.forEach(it -> it.setShortUrl("https://bookmark-catalogue.herokuapp.com/tiny/".concat(it.getShortUrl())));
     return cards;
   }
 
