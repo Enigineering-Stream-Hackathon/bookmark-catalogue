@@ -51,7 +51,7 @@ public class UrlShorterController {
           content = @Content) })
   @PostMapping(value = "/short-url", consumes = "application/json")
   public ResponseEntity<ShortUrlResponse> create(@RequestBody UrlShorterRequest request) {
-    val shortUrl = "http://localhost:8080/tiny/quicky/"
+    val shortUrl = "https://bookmark-catalogue.herokuapp.com/tiny/quicky/"
         .concat(service.createShortUrl(request.toCommand()));
     return status(CREATED).body(new ShortUrlResponse(shortUrl));
   }

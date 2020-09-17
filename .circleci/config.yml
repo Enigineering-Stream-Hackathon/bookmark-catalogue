@@ -43,7 +43,7 @@ jobs:
       - store_test_results:
           path: ~/test-results
       - store_artifacts:
-          path: bootstrap/target/bootstrap-1.0-SNAPSHOT.jar
+          path: bootstrap/target/bootstrap-1.0.0-SNAPSHOT.jar
 
 workflows:
   build_workflow:
