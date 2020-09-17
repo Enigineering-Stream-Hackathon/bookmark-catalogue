@@ -1,5 +1,5 @@
 server:
-  port: ${PORT}|8080
+  port: ${PORT}||8080
 
 spring:
   application:
@@ -8,7 +8,7 @@ spring:
   datasource:
     platform: h2
     driverClassName: org.h2.Driver
-    jdbcUrl: jdbc:h2:memory:db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    jdbcUrl: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password: sa
     liquibase:
