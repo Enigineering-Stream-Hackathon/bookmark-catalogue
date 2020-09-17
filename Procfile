@@ -1,1 +1,1 @@
-web: java -jar bootstrap/target/bootstrap-1.0-SNAPSHOT.jar --server.port=$PORT
+web: java -jar $JAVA_OPTS -Dserver.port=$PORT bootstrap/target/bootstrap-1.0-SNAPSHOT.jar
