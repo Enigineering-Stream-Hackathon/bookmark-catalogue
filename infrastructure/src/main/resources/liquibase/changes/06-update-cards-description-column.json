@@ -1,0 +1,19 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "06-update-cards-description-column",
+        "author": "thor",
+        "changes": [
+          {
+            "modifyDataType": {
+              "tableName": "T_CARD",
+              "columnName": "DESCRIPTION",
+              "newDataType": "VARCHAR2(750)"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

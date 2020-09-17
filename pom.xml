@@ -28,6 +28,8 @@
     <fluent-jdbc.version>1.8.3</fluent-jdbc.version>
     <liquibase.version>3.4.2</liquibase.version>
     <cucumber.version>4.2.3</cucumber.version>
+    <swagger-annotations.version>2.1.1</swagger-annotations.version>
+    <openApi.version>1.4.6</openApi.version>
   </properties>
 
   <dependencyManagement>
