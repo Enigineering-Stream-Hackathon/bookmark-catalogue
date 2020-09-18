@@ -7,10 +7,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.UUID;
 import lombok.val;
 import org.bookmark.domain.commands.CatalogueCommand;
 import org.bookmark.domain.commands.Category;
+import org.bookmark.domain.enitites.Card;
 import org.bookmark.domain.enitites.Catalogue;
 import org.bookmark.domain.repositories.CardRepository;
 import org.bookmark.domain.repositories.CatalogueRepository;
@@ -67,6 +69,8 @@ public class CatalogueServiceTest {
         new Catalogue(catalogueId, "Test cata", asList("12341", "34335253"), "http://longurl",
             "tribe/shortUrl",
             "ironMan"));
+    when(cardRepository.findById(anyString())).thenReturn(new Card("12341", "TITLE", "DESC", "http://longurl", "chris/1233sadasd1233432dasd1", "ironman",
+        LocalDate.now(), "chris", "FT1", "Tribe1", "PlatForm1"));
 
     val result = service.findCatalogue(catalogueId);
     verify(catalogueRepository).findByCatalogueId(catalogueId);
