@@ -54,6 +54,7 @@ public class CatalogueService {
     val cards = catalogue.getCardIds().stream()
         .map(cardRepository::findById)
         .collect(toList());
+    cards.forEach(it -> it.setShortUrl("https://bookmark-catalogue.herokuapp.com/tiny/".concat(it.getShortUrl())));
     return new CatalogueQuery(catalogue.getCatalogueId(), catalogue.getTitle(), cards,
         catalogue.getLongUrl(), "https://bookmark-catalogue.herokuapp.com/tiny/".concat(catalogue.getShortUrl()), catalogue.getCreator());
   }
